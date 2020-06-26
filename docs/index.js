@@ -148,7 +148,7 @@ d3.json("samples.json", function(data) {
             })
        .attr("transform", "translate(100,300)")
        .style("font", "5px times")
-       .style('fill', 'orange');
+       .style('fill', 'red');
 
 
 });
