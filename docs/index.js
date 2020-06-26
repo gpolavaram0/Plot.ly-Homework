@@ -13,6 +13,9 @@ d3.json("samples.json", function(data) {
     console.log(data.samples["0"].sample_values);
     var sample_val = data.samples["0"].sample_values;
     console.log(data.samples["0"].otu_ids);
+    
+    
+ 
     var ids = data.samples["0"].otu_ids;
 
 var svgWidth = 500, svgHeight = 500, barPadding = 20;
@@ -121,27 +124,6 @@ var svgBubble = d3.select('#bubbleChart')
      .attr("width", svgWidth)
      .attr("height", svgHeight);
 
-
-     svgBubble
-     .append('g')
-     .selectAll("dot")
-     .data(dataset)
-     .enter()
-     .append("circle")
-       .attr("class", "bubbles")
-       .attr("cx", function(d, i) { 
-        return d;
-            })
-       .attr("cy", function(d, i) { 
-        return d; 
-            })
-       .attr("r", function(d, i) { 
-        return d/10;
-            })
-       .style("fill", "red")
-       .attr("transform", "translate(100,0)")
-       .on("mouseleave", "hideTooltip" );
-
      svgBubble.append("g")
      .call(x_axis)
      .attr("transform", "translate(50,482)");
@@ -149,6 +131,75 @@ var svgBubble = d3.select('#bubbleChart')
      svgBubble.append("g")
      .call(y_axis)
      .attr("transform", "translate(50,0)");
+
+d3.json("samples.json", function(data) {
+
+    // (data.samples[0]).forEach(element => console.log(element));
+
+    // (data.samples[0]).forEach(element => console.log(
+        
+    //     element
+        
+        
+        
+    //     ));;
+
+
+    console.log(data.samples[0].otu_ids[2]);
+    console.log(data.samples[0].sample_values);
+
+    svgBubble
+    .append('g')
+    .selectAll("dot")
+    .data(dataset)
+    .enter()
+     .append("circle")
+       .attr("class", "bubbles")
+       .attr("cx", function(d, i) { 
+        return data.samples[0].otu_ids[i]/10;
+            })
+       .attr("cy", function(d, i) { 
+        return -(data.samples[0].sample_values[i]); 
+            })
+       .attr("r", function(d, i) { 
+        return data.samples[0].sample_values[i]/5;
+            })
+       .style("fill", function(d, i) { 
+        return (data.samples[0].otu_ids[i]);
+            })
+       .attr("transform", "translate(100,300)")
+       .on("mouseleave", "hideTooltip" );
+
+
+});
+     
+//      svgBubble
+//      .append('g')
+//      .selectAll("dot")
+//      .data(dataset)
+//      .enter()
+//      .append("circle")
+//        .attr("class", "bubbles")
+//        .attr("cx", function(d, i) { 
+//         return d;
+//             })
+//        .attr("cy", function(d, i) { 
+//         return d; 
+//             })
+//        .attr("r", function(d, i) { 
+//         return d/10;
+//             })
+//        .style("fill", "red")
+//        .attr("transform", "translate(100,0)")
+//        .on("mouseleave", "hideTooltip" );
+
+//      svgBubble.append("g")
+//      .call(x_axis)
+//      .attr("transform", "translate(50,482)");
+
+//      svgBubble.append("g")
+//      .call(y_axis)
+//      .attr("transform", "translate(50,0)");
 
 
 
