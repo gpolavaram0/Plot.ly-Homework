@@ -147,7 +147,7 @@ d3.json("samples.json", function(data) {
         return -(data.samples[0].sample_values[i]); 
             })
        .attr("transform", "translate(100,300)")
-       .style("font", "5px times")
+       .style("font", "7px times")
        .style('fill', 'red');
 
 
