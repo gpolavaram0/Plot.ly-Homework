@@ -132,6 +132,8 @@ var svgBubble = d3.select('#bubbleChart')
      .call(y_axis)
      .attr("transform", "translate(50,0)");
 
+     
+
 d3.json("samples.json", function(data) {
 
     // (data.samples[0]).forEach(element => console.log(element));
@@ -169,6 +171,24 @@ d3.json("samples.json", function(data) {
             })
        .attr("transform", "translate(100,300)")
        .on("mouseleave", "hideTooltip" );
+
+       svgBubble
+       .append('g')
+       .selectAll("dot")
+       .data(dataset)
+       .enter()
+       .append("text").text(function(d, i) { 
+        return (data.samples[0].otu_labels[i]); 
+            })
+       .attr("x", function(d, i) { 
+        return data.samples[0].otu_ids[i]/10;
+            })
+       .attr("y", function(d, i) { 
+        return -(data.samples[0].sample_values[i]); 
+            })
+       .attr("transform", "translate(100,300)")
+       .style("font", "5px times")
+       .style('fill', 'green');
 
 
 });
